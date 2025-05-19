@@ -1,0 +1,1 @@
+import{_ as t,c as a,o as s,a2 as o}from"./chunks/framework.mHbs_Ce4.js";const m=JSON.parse('{"title":"Setup","description":"","frontmatter":{},"headers":[],"relativePath":"setup.md","filePath":"setup.md"}'),i={name:"setup.md"};function l(n,e,d,r,h,c){return s(),a("div",null,e[0]||(e[0]=[o("",13)]))}const u=t(i,[["render",l]]);export{m as __pageData,u as default};

@@ -1,0 +1,9 @@
+(function() {
+    var implementors = Object.fromEntries([["comments",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.83.0/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"comments/enum.Signal.html\" title=\"enum comments::Signal\">Signal</a>"],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.83.0/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"comments/comment/struct.UpdateCommentInput.html\" title=\"struct comments::comment::UpdateCommentInput\">UpdateCommentInput</a>"]]],["comments_integrity",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.83.0/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"comments_integrity/enum.EntryTypes.html\" title=\"enum comments_integrity::EntryTypes\">EntryTypes</a>"],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.83.0/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"comments_integrity/enum.LinkTypes.html\" title=\"enum comments_integrity::LinkTypes\">LinkTypes</a>"],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.83.0/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"comments_integrity/enum.UnitEntryTypes.html\" title=\"enum comments_integrity::UnitEntryTypes\">UnitEntryTypes</a>"],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.83.0/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"comments_integrity/comment/struct.Comment.html\" title=\"struct comments_integrity::comment::Comment\">Comment</a>"]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":57,"fragment_lengths":[551,1132]}

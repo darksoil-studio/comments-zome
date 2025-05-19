@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["validate_create_link_commented_to_comments","validate_delete_link_commented_to_comments"]};

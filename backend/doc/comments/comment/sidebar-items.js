@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_comment","delete_comment","get_all_deletes_for_comment","get_all_revisions_for_comment","get_comments_for_comment","get_deleted_comments_for_comment","get_latest_comment","get_oldest_delete_for_comment","get_original_comment","update_comment"],"struct":["UpdateCommentInput"]};

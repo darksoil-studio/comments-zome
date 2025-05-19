@@ -1,0 +1,9 @@
+(function() {
+    var implementors = Object.fromEntries([["comments",[["impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.203/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"enum\" href=\"comments/enum.Signal.html\" title=\"enum comments::Signal\">Signal</a>"],["impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.203/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"comments/comment/struct.UpdateCommentInput.html\" title=\"struct comments::comment::UpdateCommentInput\">UpdateCommentInput</a>"]]],["comments_integrity",[["impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.203/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"enum\" href=\"comments_integrity/enum.EntryTypes.html\" title=\"enum comments_integrity::EntryTypes\">EntryTypes</a>"],["impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.203/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"enum\" href=\"comments_integrity/enum.LinkTypes.html\" title=\"enum comments_integrity::LinkTypes\">LinkTypes</a>"],["impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.203/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"comments_integrity/comment/struct.Comment.html\" title=\"struct comments_integrity::comment::Comment\">Comment</a>"]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":57,"fragment_lengths":[625,960]}
