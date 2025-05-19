@@ -1,3 +1,5 @@
+pub mod commented_to_comments;
+pub use commented_to_comments::*;
 pub mod comment;
 pub use comment::*;
 use hdi::prelude::*;
@@ -15,6 +17,7 @@ pub enum EntryTypes {
 pub enum LinkTypes {
     CommentToComments,
     CommentUpdates,
+    CommentedToComments,
 }
 
 // Validation you perform during the genesis process. Nobody else on the network performs it, only you.
@@ -165,6 +168,12 @@ pub fn validate(op: Op) -> ExternResult<ValidateCallbackResult> {
             LinkTypes::CommentUpdates => {
                 validate_create_link_comment_updates(action, base_address, target_address, tag)
             }
+            LinkTypes::CommentedToComments => validate_create_link_commented_to_comments(
+                action,
+                base_address,
+                target_address,
+                tag,
+            ),
         },
         FlatOp::RegisterDeleteLink {
             link_type,
@@ -182,6 +191,13 @@ pub fn validate(op: Op) -> ExternResult<ValidateCallbackResult> {
                 tag,
             ),
             LinkTypes::CommentUpdates => validate_delete_link_comment_updates(
+                action,
+                original_action,
+                base_address,
+                target_address,
+                tag,
+            ),
+            LinkTypes::CommentedToComments => validate_delete_link_commented_to_comments(
                 action,
                 original_action,
                 base_address,
@@ -331,6 +347,12 @@ pub fn validate(op: Op) -> ExternResult<ValidateCallbackResult> {
                         target_address,
                         tag,
                     ),
+                    LinkTypes::CommentedToComments => validate_create_link_commented_to_comments(
+                        action,
+                        base_address,
+                        target_address,
+                        tag,
+                    ),
                 },
                 // Complementary validation to the `RegisterDeleteLink` Op, in which the record itself is validated
                 // If you want to optimize performance, you can remove the validation for an entry type here and keep it in `RegisterDeleteLink`
@@ -374,6 +396,15 @@ pub fn validate(op: Op) -> ExternResult<ValidateCallbackResult> {
                             create_link.target_address,
                             create_link.tag,
                         ),
+                        LinkTypes::CommentedToComments => {
+                            validate_delete_link_commented_to_comments(
+                                action,
+                                create_link.clone(),
+                                base_address,
+                                create_link.target_address,
+                                create_link.tag,
+                            )
+                        }
                     }
                 }
                 OpRecord::CreatePrivateEntry { .. } => Ok(ValidateCallbackResult::Valid),

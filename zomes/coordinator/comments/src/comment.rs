@@ -7,6 +7,12 @@ pub fn create_comment(comment: Comment) -> ExternResult<Record> {
     if let Some(base) = comment.reply_to.clone() {
         create_link(base, comment_hash.clone(), LinkTypes::CommentToComments, ())?;
     }
+    create_link(
+        comment.commented_hash.clone(),
+        comment_hash.clone(),
+        LinkTypes::CommentedToComments,
+        (),
+    )?;
     let record = get(comment_hash.clone(), GetOptions::default())?.ok_or(wasm_error!(
         WasmErrorInner::Guest("Could not find the newly created Comment".to_string())
     ))?;
@@ -121,6 +127,17 @@ pub fn delete_comment(original_comment_hash: ActionHash) -> ExternResult<ActionH
             "Comment record has no entry".to_string()
         )))?;
     let comment = <Comment>::try_from(entry)?;
+    let links = get_links(
+        GetLinksInputBuilder::try_new(comment.commented_hash, LinkTypes::CommentedToComments)?
+            .build(),
+    )?;
+    for link in links {
+        if let Some(action_hash) = link.target.into_action_hash() {
+            if action_hash == original_comment_hash {
+                delete_link(link.create_link_hash)?;
+            }
+        }
+    }
     if let Some(base_address) = comment.reply_to.clone() {
         let links = get_links(
             GetLinksInputBuilder::try_new(base_address, LinkTypes::CommentToComments)?.build(),

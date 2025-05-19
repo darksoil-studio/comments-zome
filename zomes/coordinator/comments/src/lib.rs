@@ -1,4 +1,5 @@
 pub mod comment;
+pub mod commented_to_comments;
 use comments_integrity::*;
 use hdk::prelude::*;
 

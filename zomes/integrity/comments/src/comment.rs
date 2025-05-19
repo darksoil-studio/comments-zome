@@ -3,6 +3,7 @@ use hdi::prelude::*;
 #[derive(Clone, PartialEq)]
 #[hdk_entry_helper]
 pub struct Comment {
+    pub commented_hash: AnyDhtHash,
     pub content: String,
     pub reply_to: Option<ActionHash>,
 }
