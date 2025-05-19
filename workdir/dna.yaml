@@ -1,0 +1,27 @@
+---
+manifest_version: "1"
+name: comments_test
+integrity:
+  network_seed: ~
+  properties: ~
+  zomes:
+    - name: comments_integrity
+      hash: ~
+      bundled: "../target/wasm32-unknown-unknown/release/comments_integrity.wasm"
+      dependencies: ~    
+    - name: profiles_integrity
+      hash: ~
+      bundled: <NIX PACKAGE>
+      dependencies: ~
+coordinator:
+  zomes:
+    - name: comments
+      hash: ~
+      bundled: "../target/wasm32-unknown-unknown/release/comments.wasm"
+      dependencies:
+        - name: comments_integrity    
+    - name: profiles
+      hash: ~
+      bundled: <NIX PACKAGE>
+      dependencies:
+        - name: profiles_integrity

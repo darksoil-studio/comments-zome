@@ -1,0 +1,15 @@
+[package]
+name = "comments"
+version = "0.0.1"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+name = "comments"
+
+[dependencies]
+hdk = { workspace = true }
+
+serde = { workspace = true }
+
+comments_integrity = { path = "../../integrity/comments", package = "comments_integrity" }
