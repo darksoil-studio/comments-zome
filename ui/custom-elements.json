@@ -1,0 +1,1337 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "locales/locales.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "sourceLocale",
+          "default": "`en`",
+          "description": "The locale code that templates in this source code are written in."
+        },
+        {
+          "kind": "variable",
+          "name": "targetLocales",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ , ]",
+          "description": "The other locale codes that this application is localized into. Sorted\nlexicographically."
+        },
+        {
+          "kind": "variable",
+          "name": "allLocales",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ `en`, ]",
+          "description": "All valid project locale codes. Sorted lexicographically."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "sourceLocale",
+          "declaration": {
+            "name": "sourceLocale",
+            "module": "locales/locales.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "targetLocales",
+          "declaration": {
+            "name": "targetLocales",
+            "module": "locales/locales.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "allLocales",
+          "declaration": {
+            "name": "allLocales",
+            "module": "locales/locales.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/comments-client.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsClient",
+          "members": [
+            {
+              "kind": "method",
+              "name": "createComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "comment",
+                  "type": {
+                    "text": "Comment"
+                  }
+                }
+              ],
+              "description": "Comment"
+            },
+            {
+              "kind": "method",
+              "name": "getLatestComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOriginalComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllRevisionsForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<EntryRecord<Comment>>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "updateComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                },
+                {
+                  "name": "previousCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                },
+                {
+                  "name": "updatedComment",
+                  "type": {
+                    "text": "Comment"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "deleteComment",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllDeletesForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOldestDeleteForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCommentsForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getDeletedCommentsForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<\n\t\tArray<[SignedActionHashed<CreateLink>, SignedActionHashed<DeleteLink>[]]>\n\t>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCommentsForCommented",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commented",
+                  "type": {
+                    "text": "AnyDhtHash"
+                  }
+                }
+              ],
+              "description": "Comments for Commented"
+            },
+            {
+              "kind": "method",
+              "name": "getDeletedCommentsForCommented",
+              "return": {
+                "type": {
+                  "text": "Promise<\n\t\tArray<[SignedActionHashed<CreateLink>, SignedActionHashed<DeleteLink>[]]>\n\t>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commented",
+                  "type": {
+                    "text": "AnyDhtHash"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "ZomeClient",
+            "package": "@darksoil-studio/holochain-utils"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsClient",
+          "declaration": {
+            "name": "CommentsClient",
+            "module": "src/comments-client.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/comments-store.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsStore",
+          "members": [
+            {
+              "kind": "field",
+              "name": "comments",
+              "default": "new MemoHoloHashMap((commentHash: ActionHash) => ({ latestVersion: latestVersionOfEntrySignal(this.client, () => this.client.getLatestComment(commentHash), ), original: immutableEntrySignal(() => this.client.getOriginalComment(commentHash), ), allRevisions: allRevisionsOfEntrySignal(this.client, () => this.client.getAllRevisionsForComment(commentHash), ), deletes: deletesForEntrySignal(this.client, commentHash, () => this.client.getAllDeletesForComment(commentHash), ), comments: { live: pipe( liveLinksSignal( this.client, commentHash, () => this.client.getCommentsForComment(commentHash), 'CommentToComments', ), links => links.map(l => l.target), ), deleted: pipe( deletedLinksSignal( this.client, commentHash, () => this.client.getDeletedCommentsForComment(commentHash), 'CommentToComments', ), links => links.map(l => l[0].hashed.content.target_address), ), }, }))",
+              "description": "Comment"
+            },
+            {
+              "kind": "field",
+              "name": "commentsForCommented",
+              "default": "new MemoHoloHashMap((commented: AnyDhtHash) => ({ live: pipe( liveLinksSignal( this.client, commented, () => this.client.getCommentsForCommented(commented), 'CommentedToComments', ), links => slice( this.comments, links.map(l => l.target), ), ), deleted: pipe( deletedLinksSignal( this.client, commented, () => this.client.getDeletedCommentsForCommented(commented), 'CommentedToComments', ), links => slice( this.comments, links.map(l => l[0].hashed.content.target_address), ), ), }))",
+              "description": "Comments for Commented"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsStore",
+          "declaration": {
+            "name": "CommentsStore",
+            "module": "src/comments-store.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/context.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "commentsStoreContext"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "commentsStoreContext",
+          "declaration": {
+            "name": "commentsStoreContext",
+            "module": "src/context.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./comments-store.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./comments-client.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./context.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./types.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mocks.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsZomeMock",
+          "members": [
+            {
+              "kind": "field",
+              "name": "comments",
+              "default": "new HoloHashMap< ActionHash, { deletes: Array<SignedActionHashed<Delete>>; revisions: Array<Record>; } >()",
+              "description": "Comment"
+            },
+            {
+              "kind": "field",
+              "name": "commentsForComment",
+              "default": "new HoloHashMap<ActionHash, Link[]>()"
+            },
+            {
+              "kind": "method",
+              "name": "create_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "comment",
+                  "type": {
+                    "text": "Comment"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_latest_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_revisions_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record[] | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_original_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_deletes_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_oldest_delete_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "delete_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "original_comment_hash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "update_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "input",
+                  "type": {
+                    "text": "{\n\t\toriginal_comment_hash: ActionHash;\n\t\tprevious_comment_hash: ActionHash;\n\t\tupdated_comment: Comment;\n\t}"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_comments_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "commentedToComment",
+              "default": "new HoloHashMap<AnyDhtHash, Link[]>()",
+              "description": "Comments for Commented"
+            },
+            {
+              "kind": "method",
+              "name": "get_comments_for_commented",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commented",
+                  "type": {
+                    "text": "AnyDhtHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "add_comment_for_commented",
+              "return": {
+                "type": {
+                  "text": "Promise<void>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "input",
+                  "type": {
+                    "text": "{\n\t\tcommented: AnyDhtHash;\n\t\tcomment_hash: ActionHash;\n\t}"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "ZomeMock",
+            "package": "@darksoil-studio/holochain-utils"
+          }
+        },
+        {
+          "kind": "function",
+          "name": "sampleComment",
+          "return": {
+            "type": {
+              "text": "Promise<Comment>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "client",
+              "type": {
+                "text": "CommentsClient"
+              }
+            },
+            {
+              "name": "partialComment",
+              "default": "{}",
+              "type": {
+                "text": "Partial<Comment>"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsZomeMock",
+          "declaration": {
+            "name": "CommentsZomeMock",
+            "module": "src/mocks.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sampleComment",
+          "declaration": {
+            "name": "sampleComment",
+            "module": "src/mocks.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/types.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comment-detail.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentDetail",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The hash of the Comment to show",
+              "attribute": "commentHash"
+            },
+            {
+              "kind": "method",
+              "name": "deleteComment"
+            },
+            {
+              "kind": "method",
+              "name": "renderDetail",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-deleted",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "edit-clicked",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "fired when the user clicks the edit icon button",
+              "name": "edit-clicked:"
+            },
+            {
+              "description": "detail will contain { commentHash }",
+              "name": "comment-deleted:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The hash of the Comment to show",
+              "fieldName": "commentHash"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@darksoil-studio/holochain-signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comment-detail",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentDetail",
+          "declaration": {
+            "name": "CommentDetail",
+            "module": "src/elements/comment-detail.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comment-detail",
+          "declaration": {
+            "name": "CommentDetail",
+            "module": "src/elements/comment-detail.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comment-summary.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentSummary",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The hash of the Comment to show",
+              "attribute": "commentHash"
+            },
+            {
+              "kind": "field",
+              "name": "editing",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "renderUsername",
+              "parameters": [
+                {
+                  "name": "agent",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderSummary",
+              "parameters": [
+                {
+                  "name": "original",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                },
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "description": "detail will contain { commentHash }",
+              "name": "comment-selected:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The hash of the Comment to show",
+              "fieldName": "commentHash"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@darksoil-studio/holochain-signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comment-summary",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentSummary",
+          "declaration": {
+            "name": "CommentSummary",
+            "module": "src/elements/comment-summary.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comment-summary",
+          "declaration": {
+            "name": "CommentSummary",
+            "module": "src/elements/comment-summary.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comments-context.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsContext",
+          "members": [
+            {
+              "kind": "field",
+              "name": "client",
+              "type": {
+                "text": "AppClient"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "CommentsStore"
+              },
+              "attribute": "store"
+            },
+            {
+              "kind": "field",
+              "name": "role",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "role"
+            },
+            {
+              "kind": "field",
+              "name": "zome",
+              "type": {
+                "text": "string"
+              },
+              "default": "'comments'",
+              "attribute": "zome"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "store",
+              "type": {
+                "text": "CommentsStore"
+              },
+              "fieldName": "store"
+            },
+            {
+              "name": "role",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "role"
+            },
+            {
+              "name": "zome",
+              "type": {
+                "text": "string"
+              },
+              "default": "'comments'",
+              "fieldName": "zome"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comments-context",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsContext",
+          "declaration": {
+            "name": "CommentsContext",
+            "module": "src/elements/comments-context.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comments-context",
+          "declaration": {
+            "name": "CommentsContext",
+            "module": "src/elements/comments-context.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comments-for-comment.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsForComment",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The CommentHash for which the Comments should be fetched",
+              "attribute": "commentHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The CommentHash for which the Comments should be fetched",
+              "fieldName": "commentHash"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@darksoil-studio/holochain-signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comments-for-comment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsForComment",
+          "declaration": {
+            "name": "CommentsForComment",
+            "module": "src/elements/comments-for-comment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comments-for-comment",
+          "declaration": {
+            "name": "CommentsForComment",
+            "module": "src/elements/comments-for-comment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comments-for-commented.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsForCommented",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentedHash",
+              "type": {
+                "text": "AnyDhtHash"
+              },
+              "description": "REQUIRED. The Commented for which the Comments should be fetched",
+              "attribute": "commentedHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentedHash",
+              "type": {
+                "text": "AnyDhtHash"
+              },
+              "description": "REQUIRED. The Commented for which the Comments should be fetched",
+              "fieldName": "commentedHash"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@darksoil-studio/holochain-signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comments-for-commented",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsForCommented",
+          "declaration": {
+            "name": "CommentsForCommented",
+            "module": "src/elements/comments-for-commented.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comments-for-commented",
+          "declaration": {
+            "name": "CommentsForCommented",
+            "module": "src/elements/comments-for-commented.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/create-comment.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CreateComment",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentedHash",
+              "type": {
+                "text": "AnyDhtHash"
+              },
+              "description": "OPTIONAl. The reply to for this Comment",
+              "attribute": "commentedHash"
+            },
+            {
+              "kind": "field",
+              "name": "replyTo",
+              "type": {
+                "text": "ActionHash | undefined"
+              },
+              "description": "OPTIONAl. The reply to for this Comment",
+              "attribute": "replyTo"
+            },
+            {
+              "kind": "method",
+              "name": "createComment",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-created",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "cancel-clicked",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { commentHash }",
+              "name": "comment-created:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentedHash",
+              "type": {
+                "text": "AnyDhtHash"
+              },
+              "description": "OPTIONAl. The reply to for this Comment",
+              "fieldName": "commentedHash"
+            },
+            {
+              "name": "replyTo",
+              "type": {
+                "text": "ActionHash | undefined"
+              },
+              "description": "OPTIONAl. The reply to for this Comment",
+              "fieldName": "replyTo"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@darksoil-studio/holochain-signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "create-comment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CreateComment",
+          "declaration": {
+            "name": "CreateComment",
+            "module": "src/elements/create-comment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "create-comment",
+          "declaration": {
+            "name": "CreateComment",
+            "module": "src/elements/create-comment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/edit-comment.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "EditComment",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The hash of the original `Create` action for this Comment",
+              "attribute": "commentHash"
+            },
+            {
+              "kind": "method",
+              "name": "updateComment",
+              "parameters": [
+                {
+                  "name": "currentRecord",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                },
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Comment>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderEditForm",
+              "parameters": [
+                {
+                  "name": "currentRecord",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-updated",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "cancel-clicked",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { originalCommentHash, previousCommentHash, updatedCommentHash }",
+              "name": "comment-updated:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "description": "REQUIRED. The hash of the original `Create` action for this Comment",
+              "fieldName": "commentHash"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@darksoil-studio/holochain-signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "edit-comment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "EditComment",
+          "declaration": {
+            "name": "EditComment",
+            "module": "src/elements/edit-comment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "edit-comment",
+          "declaration": {
+            "name": "EditComment",
+            "module": "src/elements/edit-comment.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
