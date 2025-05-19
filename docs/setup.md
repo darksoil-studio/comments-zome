@@ -17,7 +17,7 @@ This will do the following:
 
 That's it! You have now integrated the `comments` coordinator and integrity zomes and their UI into your app!
 
-Now, [choose which elements you need](/elements/comments-context.md) and import them like this:
+Now, [choose which elements you need](/elements/comments-for-commented.md) and import them like this:
 
 ```js
 import "@darksoil-studio/comments-zome/dist/elements/comments-context.js";
